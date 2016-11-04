@@ -4,14 +4,34 @@ using System.Collections;
 using System.IO;
 
 public class takeScreenshot : MonoBehaviour {
+	public Camera screenshotCamera;
+
 	// Take a shot immediately
-	IEnumerator Start () {
-		yield return UploadPNG();
+	void Start () {
+		screenshotCamera = GetComponent<Camera> ();
+//		yield return UploadPNG();
 	}
+
+	void Update(){
+		if (AppManager.clickTouchpad) {
+			Debug.Log ("++ssCamera");
+			AppManager.clickTouchpad = false;
+			StartCoroutine(UploadPNG ());
+
+		}
+			
+	}
+		
 
 	IEnumerator UploadPNG() {
 		// We should only read the screen buffer after rendering is complete
+		Debug.Log ("Enable screenshot camera");
+		screenshotCamera.enabled = true;
+		Debug.Log ("Enable screenshot camera");
 		yield return new WaitForEndOfFrame();
+
+
+
 
 		// Create a texture the size of the screen, RGB24 format
 		int width = Screen.width;
@@ -30,6 +50,7 @@ public class takeScreenshot : MonoBehaviour {
 		File.WriteAllBytes(Application.dataPath + "/../SavedScreen.png", bytes);
 
 		Debug.Log ("Saved screenshot");
+		screenshotCamera.enabled = false;
 
 
 		// Create a Web Form
