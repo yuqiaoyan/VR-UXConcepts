@@ -8,6 +8,11 @@ public class ControllerManager : MonoBehaviour {
 	private Valve.VR.EVRButtonId triggerButton = Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger;
 	private Valve.VR.EVRButtonId gripButton = Valve.VR.EVRButtonId.k_EButton_Grip ;
 
+	public static ControllerManager Instance;
+
+	void Awake(){
+		Instance = this;
+	}
 
 
 	private SteamVR_Controller.Device controller {

@@ -1,5 +1,6 @@
 ﻿// Saves screenshot as PNG file.
 using UnityEngine;
+using System;
 using System.Collections;
 using System.IO;
 
@@ -44,7 +45,13 @@ public class takeScreenshot : MonoBehaviour {
 
 		// Encode texture into PNG
 		byte[] bytes = tex.EncodeToPNG();
-		Object.Destroy(tex);
+		UnityEngine.Object.Destroy(tex);
+
+        string imgBase64 = Convert.ToBase64String(bytes);
+
+		CloudAPITest temp = new CloudAPITest ();
+		temp.runOCR (imgBase64);
+	
 
 		// For testing purposes, also write to a file in the project folder
 		File.WriteAllBytes(Application.dataPath + "/../SavedScreen.png", bytes);
@@ -53,20 +60,6 @@ public class takeScreenshot : MonoBehaviour {
 		screenshotCamera.enabled = false;
 
 
-		// Create a Web Form
-//		WWWForm form = new WWWForm();
-//		form.AddField("frameCount", Time.frameCount.ToString());
-//		form.AddBinaryData("fileUpload",bytes);
-//
-//		// Upload to a cgi script
-//		WWW w = new WWW("http://localhost/cgi-bin/env.cgi?post", form);
-//		yield return w;
-//
-//		if (w.error != null) {
-//			Debug.Log(w.error);
-//		} else {
-//			Debug.Log("Finished Uploading Screenshot");
-//		}
 	}
 
 }
