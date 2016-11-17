@@ -5,11 +5,14 @@ using System.Collections;
 using System.IO;
 
 public class takeScreenshot : MonoBehaviour {
-	public Camera screenshotCamera;
+	private Camera screenshotCamera;
+	public Camera head, eye;
+	public GameObject rigT;
 
 	// Take a shot immediately
 	void Start () {
 		screenshotCamera = GetComponent<Camera> ();
+		screenshotCamera.enabled = false;
 //		yield return UploadPNG();
 	}
 
@@ -17,6 +20,9 @@ public class takeScreenshot : MonoBehaviour {
 		if (AppManager.clickTouchpad) {
 			Debug.Log ("++ssCamera");
 			AppManager.clickTouchpad = false;
+			head.enabled = false;
+			eye.enabled = false;
+			rigT.SetActive (false);
 			StartCoroutine(UploadPNG ());
 
 		}
@@ -28,8 +34,9 @@ public class takeScreenshot : MonoBehaviour {
 		// We should only read the screen buffer after rendering is complete
 		Debug.Log ("Enable screenshot camera");
 		screenshotCamera.enabled = true;
-		Debug.Log ("Enable screenshot camera");
+
 		yield return new WaitForEndOfFrame();
+
 
 
 
@@ -49,8 +56,8 @@ public class takeScreenshot : MonoBehaviour {
 
         string imgBase64 = Convert.ToBase64String(bytes);
 
-		CloudAPITest temp = new CloudAPITest ();
-		temp.runOCR (imgBase64);
+		//CloudAPITest temp = new CloudAPITest ();
+		//temp.runOCR (imgBase64);
 	
 
 		// For testing purposes, also write to a file in the project folder
@@ -58,7 +65,9 @@ public class takeScreenshot : MonoBehaviour {
 
 		Debug.Log ("Saved screenshot");
 		screenshotCamera.enabled = false;
-
+		head.enabled = true;
+		eye.enabled = true;
+		rigT.SetActive (true);
 
 	}
 
