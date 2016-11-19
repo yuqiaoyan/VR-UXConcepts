@@ -22,7 +22,7 @@ public class takeScreenshot : MonoBehaviour {
 			AppManager.clickTouchpad = false;
 			head.enabled = false;
 			eye.enabled = false;
-			rigT.SetActive (false);
+			//rigT.SetActive (false);
 			StartCoroutine(UploadPNG ());
 
 		}
@@ -56,18 +56,24 @@ public class takeScreenshot : MonoBehaviour {
 
         string imgBase64 = Convert.ToBase64String(bytes);
 
-		//CloudAPITest temp = new CloudAPITest ();
-		//temp.runOCR (imgBase64);
+		if(GameObject.Find("OCR") !=null){
+			CloudAPITest temp = GameObject.Find("OCR").GetComponent<CloudAPITest> ();
+			temp.runOCR (imgBase64);
+		}
+			else{
+				AppManager.debugText.text = "can't find OCR object";
+			}
 	
 
 		// For testing purposes, also write to a file in the project folder
+		System.IO.File.WriteAllText(Application.dataPath + "/../img64.txt",imgBase64);
 		File.WriteAllBytes(Application.dataPath + "/../SavedScreen.png", bytes);
 
 		Debug.Log ("Saved screenshot");
 		screenshotCamera.enabled = false;
 		head.enabled = true;
 		eye.enabled = true;
-		rigT.SetActive (true);
+		//rigT.SetActive (true);
 
 	}
 

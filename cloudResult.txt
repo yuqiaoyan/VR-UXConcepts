@@ -1,0 +1,55 @@
+{
+  "responses": [
+    {
+      "textAnnotations": [
+        {
+          "locale": "fil",
+          "description": "BA\n",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 172,
+                "y": 40
+              },
+              {
+                "x": 733,
+                "y": 40
+              },
+              {
+                "x": 733,
+                "y": 455
+              },
+              {
+                "x": 172,
+                "y": 455
+              }
+            ]
+          }
+        },
+        {
+          "description": "BA",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 172,
+                "y": 40
+              },
+              {
+                "x": 733,
+                "y": 40
+              },
+              {
+                "x": 733,
+                "y": 455
+              },
+              {
+                "x": 172,
+                "y": 455
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
