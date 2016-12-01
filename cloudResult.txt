@@ -3,48 +3,48 @@
     {
       "textAnnotations": [
         {
-          "locale": "fil",
-          "description": "BA\n",
+          "locale": "en",
+          "description": "CAP\n",
           "boundingPoly": {
             "vertices": [
               {
-                "x": 172,
-                "y": 40
+                "x": 218,
+                "y": 55
               },
               {
-                "x": 733,
-                "y": 40
+                "x": 897,
+                "y": 55
               },
               {
-                "x": 733,
-                "y": 455
+                "x": 897,
+                "y": 444
               },
               {
-                "x": 172,
-                "y": 455
+                "x": 218,
+                "y": 444
               }
             ]
           }
         },
         {
-          "description": "BA",
+          "description": "CAP",
           "boundingPoly": {
             "vertices": [
               {
-                "x": 172,
-                "y": 40
+                "x": 218,
+                "y": 55
               },
               {
-                "x": 733,
-                "y": 40
+                "x": 897,
+                "y": 55
               },
               {
-                "x": 733,
-                "y": 455
+                "x": 897,
+                "y": 444
               },
               {
-                "x": 172,
-                "y": 455
+                "x": 218,
+                "y": 444
               }
             ]
           }
