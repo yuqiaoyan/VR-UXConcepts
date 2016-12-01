@@ -4,47 +4,93 @@
       "textAnnotations": [
         {
           "locale": "en",
-          "description": "CAP\n",
+          "description": "g Black 011\n",
           "boundingPoly": {
             "vertices": [
               {
-                "x": 218,
-                "y": 55
+                "x": 1,
+                "y": 255
               },
               {
-                "x": 897,
-                "y": 55
+                "x": 566,
+                "y": 255
               },
               {
-                "x": 897,
-                "y": 444
+                "x": 566,
+                "y": 349
               },
               {
-                "x": 218,
-                "y": 444
+                "x": 1,
+                "y": 349
               }
             ]
           }
         },
         {
-          "description": "CAP",
+          "description": "g",
           "boundingPoly": {
             "vertices": [
               {
-                "x": 218,
-                "y": 55
+                "x": 1,
+                "y": 255
               },
               {
-                "x": 897,
-                "y": 55
+                "x": 52,
+                "y": 255
               },
               {
-                "x": 897,
-                "y": 444
+                "x": 52,
+                "y": 349
               },
               {
-                "x": 218,
-                "y": 444
+                "x": 1,
+                "y": 349
+              }
+            ]
+          }
+        },
+        {
+          "description": "Black",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 129,
+                "y": 255
+              },
+              {
+                "x": 373,
+                "y": 255
+              },
+              {
+                "x": 373,
+                "y": 325
+              },
+              {
+                "x": 129,
+                "y": 325
+              }
+            ]
+          }
+        },
+        {
+          "description": "011",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 422,
+                "y": 255
+              },
+              {
+                "x": 566,
+                "y": 255
+              },
+              {
+                "x": 566,
+                "y": 325
+              },
+              {
+                "x": 422,
+                "y": 325
               }
             ]
           }
