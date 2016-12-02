@@ -7,7 +7,8 @@ using System.IO;
 public class takeScreenshot : MonoBehaviour {
 	private Camera screenshotCamera;
 	public Camera head, eye;
-	public GameObject rigT, leftControl,rightControl;
+	public GameObject leftControl,rightControl;
+    public Light spotlight;
 
 	// Take a shot immediately
 	void Start () {
@@ -22,9 +23,8 @@ public class takeScreenshot : MonoBehaviour {
 			AppManager.clickTouchpad = false;
 			head.enabled = false;
 			eye.enabled = false;
-            //rigT.SetActive (false);
-            leftControl.SetActive(false);
-            rightControl.SetActive(false);
+            //leftControl.SetActive(false);
+            //rightControl.SetActive(false);
 			StartCoroutine(UploadPNG ());
 
 		}
@@ -37,6 +37,7 @@ public class takeScreenshot : MonoBehaviour {
         Debug.Log ("Enable screenshot camera");
         DateTime enableCamTime = System.DateTime.Now;
         screenshotCamera.enabled = true;
+        spotlight.enabled = true;
 
         Debug.Log(enableCamTime.ToLongTimeString() + ":" + enableCamTime.Millisecond.ToString());
 		yield return new WaitForEndOfFrame();
@@ -58,11 +59,11 @@ public class takeScreenshot : MonoBehaviour {
         DateTime viveOffTime = System.DateTime.Now;
         Debug.Log(viveOffTime.ToLongTimeString() + ":" + viveOffTime.Millisecond.ToString());
         screenshotCamera.enabled = false;
+        spotlight.enabled = false;
         head.enabled = true;
         eye.enabled = true;
-        //rigT.SetActive (true);
-        leftControl.SetActive(true);
-        rightControl.SetActive(true);
+        //leftControl.SetActive(true);
+        //rightControl.SetActive(true);
 
         // Encode texture into PNG
         byte[] bytes = tex.EncodeToPNG();
@@ -73,8 +74,9 @@ public class takeScreenshot : MonoBehaviour {
         
 
         if (GameObject.Find("OCR") !=null){
-			CloudAPITest temp = GameObject.Find("OCR").GetComponent<CloudAPITest> ();
-			temp.runOCR (imgBase64);
+			CloudAPITest queryOCR = GameObject.Find("OCR").GetComponent<CloudAPITest> ();
+            AppManager.debugText.text = "run ocr code";
+			queryOCR.runOCR (imgBase64);
 		}
 			else{
 				AppManager.debugText.text = "can't find OCR object";
@@ -83,7 +85,7 @@ public class takeScreenshot : MonoBehaviour {
 
 		// For testing purposes, also write to a file in the project folder
 		//System.IO.File.WriteAllText(Application.dataPath + "/../img64.txt",imgBase64);
-		//File.WriteAllBytes(Application.dataPath + "/../SavedScreen.png", bytes);
+		File.WriteAllBytes(Application.dataPath + "/../SavedScreen.png", bytes);
 
 		
 
