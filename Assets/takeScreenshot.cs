@@ -21,7 +21,8 @@ public class takeScreenshot : MonoBehaviour {
 		if (AppManager.clickTouchpad) {
 			Debug.Log ("++ssCamera");
 			AppManager.clickTouchpad = false;
-			head.enabled = false;
+            spotlight.enabled = true;
+            head.enabled = false;
 			eye.enabled = false;
             //leftControl.SetActive(false);
             //rightControl.SetActive(false);
@@ -37,7 +38,7 @@ public class takeScreenshot : MonoBehaviour {
         Debug.Log ("Enable screenshot camera");
         DateTime enableCamTime = System.DateTime.Now;
         screenshotCamera.enabled = true;
-        spotlight.enabled = true;
+        
 
         Debug.Log(enableCamTime.ToLongTimeString() + ":" + enableCamTime.Millisecond.ToString());
 		yield return new WaitForEndOfFrame();
