@@ -76,7 +76,6 @@ public class takeScreenshot : MonoBehaviour {
 
         if (GameObject.Find("OCR") !=null){
 			CloudAPITest queryOCR = GameObject.Find("OCR").GetComponent<CloudAPITest> ();
-            AppManager.debugText.text = "run ocr code";
 			queryOCR.runOCR (imgBase64);
 		}
 			else{
