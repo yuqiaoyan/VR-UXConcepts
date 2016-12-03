@@ -20,7 +20,7 @@ public class SteamVR_LaserPointer : MonoBehaviour
     public float thickness = 0.002f;
     public GameObject holder;
     public GameObject pointer;
-    bool isActive = false;
+    //bool isActive = false;
     public bool addRigidBody = false;
     public Transform reference;
     public event PointerEventHandler PointerIn;
@@ -62,6 +62,7 @@ public class SteamVR_LaserPointer : MonoBehaviour
         Material newMaterial = new Material(Shader.Find("Unlit/Color"));
         newMaterial.SetColor("_Color", color);
         pointer.GetComponent<MeshRenderer>().material = newMaterial;
+        collider.enabled = false;
 	}
 
     public virtual void OnPointerIn(PointerEventArgs e)
@@ -80,10 +81,14 @@ public class SteamVR_LaserPointer : MonoBehaviour
     // Update is called once per frame
 	void Update ()
     {
-        if (isActive)
+        if (active)
         {
-            isActive = true;
+            //isActive = true;
             this.transform.GetChild(0).gameObject.SetActive(true);
+        }
+        else
+        {
+            this.transform.GetChild(0).gameObject.SetActive(false);
         }
 
         float dist = 100f;

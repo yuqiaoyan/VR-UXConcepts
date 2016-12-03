@@ -1,55 +1,5 @@
 {
   "responses": [
-    {
-      "textAnnotations": [
-        {
-          "locale": "uz",
-          "description": "BO\n",
-          "boundingPoly": {
-            "vertices": [
-              {
-                "x": 262,
-                "y": 73
-              },
-              {
-                "x": 826,
-                "y": 73
-              },
-              {
-                "x": 826,
-                "y": 568
-              },
-              {
-                "x": 262,
-                "y": 568
-              }
-            ]
-          }
-        },
-        {
-          "description": "BO",
-          "boundingPoly": {
-            "vertices": [
-              {
-                "x": 263,
-                "y": 73
-              },
-              {
-                "x": 827,
-                "y": 73
-              },
-              {
-                "x": 827,
-                "y": 568
-              },
-              {
-                "x": 263,
-                "y": 568
-              }
-            ]
-          }
-        }
-      ]
-    }
+    {}
   ]
 }
