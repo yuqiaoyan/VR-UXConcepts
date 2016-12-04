@@ -24,8 +24,8 @@ public class takeScreenshot : MonoBehaviour {
             spotlight.enabled = true;
             head.enabled = false;
 			eye.enabled = false;
-            //leftControl.SetActive(false);
-            //rightControl.SetActive(false);
+            leftControl.SetActive(false);
+            rightControl.SetActive(false);
 			StartCoroutine(UploadPNG ());
 
 		}
@@ -43,9 +43,9 @@ public class takeScreenshot : MonoBehaviour {
         Debug.Log(enableCamTime.ToLongTimeString() + ":" + enableCamTime.Millisecond.ToString());
 		yield return new WaitForEndOfFrame();
 
-        Debug.Log("Rendering is complete");
-        DateTime renderDoneTime = System.DateTime.Now;
-        Debug.Log(renderDoneTime.ToLongTimeString() + ":" + renderDoneTime.Millisecond.ToString());
+        //Debug.Log("Rendering is complete");
+        //DateTime renderDoneTime = System.DateTime.Now;
+        //Debug.Log(renderDoneTime.ToLongTimeString() + ":" + renderDoneTime.Millisecond.ToString());
 
         // Create a texture the size of the screen, RGB24 format
         int width = Screen.width;
@@ -56,15 +56,13 @@ public class takeScreenshot : MonoBehaviour {
 		tex.ReadPixels(new Rect(0, 0, width, height), 0, 0);
 		tex.Apply();
 
-        Debug.Log("Turn vive camera on");
-        DateTime viveOffTime = System.DateTime.Now;
-        Debug.Log(viveOffTime.ToLongTimeString() + ":" + viveOffTime.Millisecond.ToString());
+
         screenshotCamera.enabled = false;
         spotlight.enabled = false;
         head.enabled = true;
         eye.enabled = true;
-        //leftControl.SetActive(true);
-        //rightControl.SetActive(true);
+        leftControl.SetActive(true);
+        rightControl.SetActive(true);
 
         // Encode texture into PNG
         byte[] bytes = tex.EncodeToPNG();

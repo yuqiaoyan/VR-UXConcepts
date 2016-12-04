@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 public class simpleSearch : MonoBehaviour {
@@ -8,29 +9,59 @@ public class simpleSearch : MonoBehaviour {
     bool isGo = true;
     public float spacingDistance = .75f;
     public float resultX = -1f, resultY = .4f;
-    public Transform searchResults;
+    public Transform searchResultsEmpty;
+    private Transform[] searchResultsArray;
+    private int resultsNum;
+    public TextMesh debugT;
 
     public arcLayout currMenu;
 
-    Transform Find(string query)
+    public Transform[] Find(string query)
     {
-        query = query.ToUpper();
+        int resultsIDX = 0;
 
-        for(int i = 0;i < transform.childCount; i++)
+        //clean query
+        query = query.Replace("\t", String.Empty);
+        query = query.Replace("\n", String.Empty);
+
+        for (int i = 0;i < transform.childCount; i++)
         {
             Transform item = transform.GetChild(i);
-            //Debug.Log("name is " + item.name);
+            
 
-            item.name = item.name.ToUpper();
+            String itemNameString = item.name.ToUpper();
+            
+            bool isMatch = itemNameString.Contains(query.ToUpper());
 
-            if (item.name.Contains(query))
+            //Debug.Log("name is " + itemNameString);
+            //Debug.Log("query is " + query);
+            //Debug.Log("isMatch returned " + isMatch.ToString());
+
+            if (isMatch)
             {
                 Debug.Log("Found " + item.name);
-                return item;
+                searchResultsArray[resultsIDX] = item;
+                resultsIDX += 1;
+                
             }
         }
 
-        Debug.Log("No matches");
+        if(resultsIDX == 0)
+        {
+            Debug.Log("results array " + searchResultsArray.ToString());
+            Debug.Log("No matches");
+            debugT.text = "No Matches Found";
+
+        }
+        else
+        {
+            resultsNum = resultsIDX;
+            showResults(searchResultsArray);
+            return searchResultsArray;
+        }
+
+        
+        
         return null;
     
     }
@@ -38,47 +69,49 @@ public class simpleSearch : MonoBehaviour {
     void setResult(Transform aResult, float resultZ)
     {
         aResult.localPosition = new Vector3(resultX, resultY, resultZ);
-        aResult.SetParent(searchResults);
+        aResult.SetParent(searchResultsEmpty);
 
     }
 
-    public void showResults()
+    public void showResults(Transform[] results)
     {    
-        int resultIDX = 1;
+        int resultIDX = 0;
 
 
 
         //assumes even number of results
         spacingDistance = spacingDistance / 2; //test case for small number of items
         
-        //assume arcHelper is at 0th IDX
-        for (int i = 1; i < 2; i++)
+        for (int i = 1; i <= (resultsNum / 2); i++)
         {
-            setResult(transform.GetChild(resultIDX), spacingDistance * i);
+            setResult(results[resultIDX], spacingDistance * i);
             resultIDX += 1;
 
-            setResult(transform.GetChild(resultIDX), spacingDistance * i *-1);
-            resultIDX = 1;
+            setResult(results[resultIDX], spacingDistance * i *-1);
+            resultIDX +=1;
 
         }
+
+        currMenu.hideMenu();
 
     }
 
     void Start () {
-        
+        searchResultsArray = new Transform[20];
+
 
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (transform.childCount > 4 && isGo)
-        {
-            showResults();
-            isGo = false;
-            currMenu.hideMenu();
+        //if (transform.childCount > 4 && isGo)
+        //{
+        //    showResults();
+        //    isGo = false;
+        //    currMenu.hideMenu();
             
             
-        }
+        //}
 
     }
 }

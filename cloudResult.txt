@@ -1,5 +1,55 @@
 {
   "responses": [
-    {}
+    {
+      "textAnnotations": [
+        {
+          "locale": "no",
+          "description": "FLO\n",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 33,
+                "y": 107
+              },
+              {
+                "x": 724,
+                "y": 107
+              },
+              {
+                "x": 724,
+                "y": 422
+              },
+              {
+                "x": 33,
+                "y": 422
+              }
+            ]
+          }
+        },
+        {
+          "description": "FLO",
+          "boundingPoly": {
+            "vertices": [
+              {
+                "x": 33,
+                "y": 107
+              },
+              {
+                "x": 724,
+                "y": 107
+              },
+              {
+                "x": 724,
+                "y": 422
+              },
+              {
+                "x": 33,
+                "y": 422
+              }
+            ]
+          }
+        }
+      ]
+    }
   ]
 }

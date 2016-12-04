@@ -20,7 +20,7 @@ public class arcLayout : MonoBehaviour {
         menuItem.localPosition = new Vector3(newX, menuItem.localPosition.y, menuItem.localPosition.z);
         
         arcHelper.localEulerAngles = new Vector3(0, newYRotation, 0);
-        Debug.Log(newYRotation.ToString());
+        //Debug.Log(newYRotation.ToString());
         //Debug.Log("euler angel of " + transform.name + " is " + transform.localEulerAngles.ToString());
         menuItem.SetParent(transform);
         arcHelper.localEulerAngles = new Vector3(0, 0, 0);
@@ -30,10 +30,10 @@ public class arcLayout : MonoBehaviour {
     void createArcMenu()
     {
         //NOTE - ONLY HANDLES ODD NUMBER OF OBJECTS RIGHT NOW
-        if (numItems <= catalog.transform.childCount)
-        {
+        //if (numItems <= catalog.transform.childCount)
+        //{
             //Debug.Log("number of children is " + catalog.transform.childCount.ToString());
-            int numLoops = (numItems - 1) / 2;
+            int numLoops = (catalog.transform.childCount - 1) / 2;
 
             //Debug.Log("number of loops is " + numLoops.ToString());
             int itemIDX = 0;
@@ -59,11 +59,11 @@ public class arcLayout : MonoBehaviour {
             newYRotation = 0;
             insertToArc(catalog.transform.GetChild(itemIDX), newYRotation,0);
 
-        }
-        else
-        {
-            Debug.Log("There are not enough items in the catalog.");
-        }
+        //}
+        //else
+        //{
+        //    Debug.Log("There are not enough items in the catalog.");
+        //}
 
         Debug.Log("-- CreateArcMenu");
     }
@@ -79,9 +79,6 @@ public class arcLayout : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         createArcMenu();
-        //simpleSearch test = new simpleSearch();
-        //test.showResults();
-        //hideMenu();
 	}
 	
 	// Update is called once per frame
