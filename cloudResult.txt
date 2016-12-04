@@ -3,48 +3,48 @@
     {
       "textAnnotations": [
         {
-          "locale": "no",
-          "description": "FLO\n",
+          "locale": "ms",
+          "description": "LT\n",
           "boundingPoly": {
             "vertices": [
               {
-                "x": 33,
-                "y": 107
+                "x": 68,
+                "y": 76
               },
               {
-                "x": 724,
-                "y": 107
+                "x": 645,
+                "y": 76
               },
               {
-                "x": 724,
-                "y": 422
+                "x": 645,
+                "y": 433
               },
               {
-                "x": 33,
-                "y": 422
+                "x": 68,
+                "y": 433
               }
             ]
           }
         },
         {
-          "description": "FLO",
+          "description": "LT",
           "boundingPoly": {
             "vertices": [
               {
-                "x": 33,
-                "y": 107
+                "x": 68,
+                "y": 76
               },
               {
-                "x": 724,
-                "y": 107
+                "x": 645,
+                "y": 76
               },
               {
-                "x": 724,
-                "y": 422
+                "x": 645,
+                "y": 433
               },
               {
-                "x": 33,
-                "y": 422
+                "x": 68,
+                "y": 433
               }
             ]
           }

@@ -7,12 +7,16 @@ public class simpleSearch : MonoBehaviour {
     // Use this for initialization
     //public GameObject arcLayout;
     bool isGo = true;
-    public float spacingDistance = .75f;
+    public float spacingDistance = .35f;
     public float resultX = -1f, resultY = .4f;
-    public Transform searchResultsEmpty;
+    public float startZ;
+    public Transform searchResultsObj;
     private Transform[] searchResultsArray;
     private int resultsNum;
     public TextMesh debugT;
+    public GameObject catalog;
+    public GameObject currMenuObj;
+    public TextMesh searchText;
 
     public arcLayout currMenu;
 
@@ -50,7 +54,7 @@ public class simpleSearch : MonoBehaviour {
         {
             Debug.Log("results array " + searchResultsArray.ToString());
             Debug.Log("No matches");
-            debugT.text = "No Matches Found";
+            searchText.text = "No matches found for " + query;
 
         }
         else
@@ -69,26 +73,19 @@ public class simpleSearch : MonoBehaviour {
     void setResult(Transform aResult, float resultZ)
     {
         aResult.localPosition = new Vector3(resultX, resultY, resultZ);
-        aResult.SetParent(searchResultsEmpty);
+        aResult.SetParent(searchResultsObj);
 
     }
 
     public void showResults(Transform[] results)
     {    
-        int resultIDX = 0;
-
-
-
-        //assumes even number of results
-        spacingDistance = spacingDistance / 2; //test case for small number of items
+        //simple left aligned search layout
         
-        for (int i = 1; i <= (resultsNum / 2); i++)
+        for (int i = 0; i < resultsNum; i++)
         {
-            setResult(results[resultIDX], spacingDistance * i);
-            resultIDX += 1;
-
-            setResult(results[resultIDX], spacingDistance * i *-1);
-            resultIDX +=1;
+            setResult(results[i], startZ + (spacingDistance * i));
+            //setResult(results[resultIDX], spacingDistance * i *-1);
+            //resultIDX +=1;
 
         }
 
@@ -96,8 +93,41 @@ public class simpleSearch : MonoBehaviour {
 
     }
 
+    public void clearResults()
+    {
+        if (currMenuObj.transform.childCount == 6) //assumes our catalog only shows 5 items + 1 for arcHelper
+        {
+            //do nothing
+        }
+        else
+        {
+            int i = 0;
+            while (i < searchResultsObj.childCount)
+            {
+                searchResultsObj.GetChild(i).SetParent(catalog.transform);
+            }
+
+
+            //assume 0th index is arcHelper
+            int j = 1;
+            while (currMenuObj.transform.childCount > 1)
+            {
+                Debug.Log("child name is " + currMenuObj.transform.GetChild(j).name);
+                if (currMenuObj.transform.GetChild(j).name != "arcHelper")
+                {
+
+                    currMenuObj.transform.GetChild(j).SetParent(catalog.transform);
+                }
+            }
+
+            searchText.text = "Write Search";
+            currMenu.createArcMenu();
+        }
+    }
+
     void Start () {
         searchResultsArray = new Transform[20];
+        startZ = -0.5f;
 
 
     }

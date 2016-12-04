@@ -27,7 +27,7 @@ public class arcLayout : MonoBehaviour {
 
     }
 
-    void createArcMenu()
+    public void createArcMenu()
     {
         //NOTE - ONLY HANDLES ODD NUMBER OF OBJECTS RIGHT NOW
         //if (numItems <= catalog.transform.childCount)
@@ -39,16 +39,25 @@ public class arcLayout : MonoBehaviour {
             int itemIDX = 0;
             float newYRotation = 0;
 
-
+            
+            
             for (int i = 1; i <= numLoops; i++)
             {
+
+                //reset child to initial position
+                catalog.transform.GetChild(itemIDX).localPosition = new Vector3(0, -.2f, 0);
+                catalog.transform.GetChild(itemIDX).gameObject.SetActive(true);
+
                 //rotate right
                 newYRotation = i * rotationDegrees;
+            
                 insertToArc(catalog.transform.GetChild(itemIDX), newYRotation,i);
                 itemIDX += 1;
 
                 //rotate left
                 newYRotation = i * rotationDegrees * -1;
+                catalog.transform.GetChild(itemIDX).localPosition = new Vector3(0, -.2f, 0);
+                catalog.transform.GetChild(itemIDX).gameObject.SetActive(true);
                 insertToArc(catalog.transform.GetChild(itemIDX), newYRotation,i);
                 itemIDX = 0;
 
@@ -57,6 +66,8 @@ public class arcLayout : MonoBehaviour {
 
             //assume there are an odd number of menuItems. place the last object in the center     
             newYRotation = 0;
+            catalog.transform.GetChild(itemIDX).localPosition = new Vector3(0, -.2f, 0);
+            catalog.transform.GetChild(itemIDX).gameObject.SetActive(true);
             insertToArc(catalog.transform.GetChild(itemIDX), newYRotation,0);
 
         //}

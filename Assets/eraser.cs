@@ -6,7 +6,6 @@ public class eraser : MonoBehaviour {
     private bool triggerButtonDown = false;
 
     private Valve.VR.EVRButtonId triggerButton = Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger;
-
     private SteamVR_Controller.Device controller
     {
         get { return SteamVR_Controller.Input((int)trackedObj.index); }
@@ -15,10 +14,15 @@ public class eraser : MonoBehaviour {
     private SteamVR_TrackedObject trackedObj;
 
     public GameObject writingCollection;
+    public GameObject currMenu;
+
+    private simpleSearch currSearch;
+
 
     // Use this for initialization
     void Start () {
         trackedObj = GetComponent<SteamVR_TrackedObject>();
+        currSearch = currMenu.GetComponent<simpleSearch>();
 
     }
 
@@ -37,8 +41,8 @@ public class eraser : MonoBehaviour {
 
         }
 
-        //disable the render component
-        //destroy all the cube objects
+
+        currSearch.clearResults();
 
     }
 	
