@@ -8,7 +8,7 @@ public class simpleSearch : MonoBehaviour {
     //public GameObject arcLayout;
     bool isGo = true;
     public float spacingDistance = .35f;
-    public float resultX = -1f, resultY = .4f;
+    public float resultX = -3f, resultY = .5f;
     public float startZ;
     public Transform searchResultsObj;
     private Transform[] searchResultsArray;
@@ -17,6 +17,7 @@ public class simpleSearch : MonoBehaviour {
     public GameObject catalog;
     public GameObject currMenuObj;
     public TextMesh searchText;
+    public TextMesh resultTitle;
 
     public arcLayout currMenu;
 
@@ -73,9 +74,18 @@ public class simpleSearch : MonoBehaviour {
 
     void setResult(Transform aResult, float resultZ)
     {
-        aResult.localPosition = new Vector3(resultX, resultY, resultZ);
+        
         aResult.SetParent(searchResultsObj);
+        aResult.localPosition = new Vector3(resultX, resultY, resultZ);
+        aResult.localEulerAngles = new Vector3(0, 0,0);
 
+        //update label position
+        GameObject[] labels = GameObject.FindGameObjectsWithTag("itemLabel");
+
+        for(int i = 0; i < labels.Length; i++)
+        {
+            labels[i].transform.localEulerAngles = new Vector3(0, -80, 0);
+        }
     }
 
     public void showResults(Transform[] results)
@@ -85,11 +95,10 @@ public class simpleSearch : MonoBehaviour {
         for (int i = 0; i < resultsNum; i++)
         {
             setResult(results[i], startZ + (spacingDistance * i));
-            //setResult(results[resultIDX], spacingDistance * i *-1);
-            //resultIDX +=1;
 
         }
 
+        resultTitle.GetComponent<Renderer>().enabled = true;
         currMenu.hideMenu();
 
     }
@@ -102,10 +111,18 @@ public class simpleSearch : MonoBehaviour {
         }
         else
         {
-            int i = 0;
+            //assume results title is the 0th index
+            int i = 1;
             while (i < searchResultsObj.childCount)
             {
-                searchResultsObj.GetChild(i).SetParent(catalog.transform);
+                if (searchResultsObj.GetChild(i).tag != "menuDeco")
+                {
+                    searchResultsObj.GetChild(i).SetParent(catalog.transform);
+                }
+                else
+                {
+                    searchResultsObj.GetChild(i).GetComponent<Renderer>().enabled = false;
+                }
             }
 
 
@@ -124,6 +141,8 @@ public class simpleSearch : MonoBehaviour {
             searchText.text = "Write Search";
             currMenu.createArcMenu();
         }
+
+        resultTitle.GetComponent<Renderer>().enabled = false;
     }
 
     void Start () {

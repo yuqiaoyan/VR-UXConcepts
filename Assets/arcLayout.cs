@@ -68,7 +68,15 @@ public class arcLayout : MonoBehaviour {
 
             transform.gameObject.SetActive(true);
 
-        Debug.Log("-- CreateArcMenu");
+            //all labels should be rotated 
+            GameObject[] labels = GameObject.FindGameObjectsWithTag("itemLabel");
+
+            for (int j = 0; j < labels.Length; j++)
+            {
+                labels[j].transform.localEulerAngles = new Vector3(0, -115, 0);
+            }
+
+            Debug.Log("-- CreateArcMenu");
     }
 
     public void hideMenu()
