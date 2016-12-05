@@ -27,6 +27,7 @@ public class simpleSearch : MonoBehaviour {
         //clean query
         query = query.Replace("\t", String.Empty);
         query = query.Replace("\n", String.Empty);
+        query = query.Replace(".", String.Empty);
 
         for (int i = 0;i < transform.childCount; i++)
         {
@@ -95,7 +96,7 @@ public class simpleSearch : MonoBehaviour {
 
     public void clearResults()
     {
-        if (currMenuObj.transform.childCount == 6) //assumes our catalog only shows 5 items + 1 for arcHelper
+        if (currMenuObj.transform.childCount == 7) //assumes our catalog only shows 5 items + 1 for arcHelper and title
         {
             //do nothing
         }
@@ -109,11 +110,11 @@ public class simpleSearch : MonoBehaviour {
 
 
             //assume 0th index is arcHelper
-            int j = 1;
-            while (currMenuObj.transform.childCount > 1)
+            int j = 2;
+            while (currMenuObj.transform.childCount > 2)
             {
                 Debug.Log("child name is " + currMenuObj.transform.GetChild(j).name);
-                if (currMenuObj.transform.GetChild(j).name != "arcHelper")
+                if (currMenuObj.transform.GetChild(j).tag != "menuDeco")
                 {
 
                     currMenuObj.transform.GetChild(j).SetParent(catalog.transform);

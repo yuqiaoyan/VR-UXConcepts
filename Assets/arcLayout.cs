@@ -30,8 +30,7 @@ public class arcLayout : MonoBehaviour {
     public void createArcMenu()
     {
         //NOTE - ONLY HANDLES ODD NUMBER OF OBJECTS RIGHT NOW
-        //if (numItems <= catalog.transform.childCount)
-        //{
+
             //Debug.Log("number of children is " + catalog.transform.childCount.ToString());
             int numLoops = (catalog.transform.childCount - 1) / 2;
 
@@ -46,7 +45,6 @@ public class arcLayout : MonoBehaviour {
 
                 //reset child to initial position
                 catalog.transform.GetChild(itemIDX).localPosition = new Vector3(0, -.2f, 0);
-                catalog.transform.GetChild(itemIDX).gameObject.SetActive(true);
 
                 //rotate right
                 newYRotation = i * rotationDegrees;
@@ -57,7 +55,6 @@ public class arcLayout : MonoBehaviour {
                 //rotate left
                 newYRotation = i * rotationDegrees * -1;
                 catalog.transform.GetChild(itemIDX).localPosition = new Vector3(0, -.2f, 0);
-                catalog.transform.GetChild(itemIDX).gameObject.SetActive(true);
                 insertToArc(catalog.transform.GetChild(itemIDX), newYRotation,i);
                 itemIDX = 0;
 
@@ -67,24 +64,17 @@ public class arcLayout : MonoBehaviour {
             //assume there are an odd number of menuItems. place the last object in the center     
             newYRotation = 0;
             catalog.transform.GetChild(itemIDX).localPosition = new Vector3(0, -.2f, 0);
-            catalog.transform.GetChild(itemIDX).gameObject.SetActive(true);
             insertToArc(catalog.transform.GetChild(itemIDX), newYRotation,0);
 
-        //}
-        //else
-        //{
-        //    Debug.Log("There are not enough items in the catalog.");
-        //}
+            transform.gameObject.SetActive(true);
 
         Debug.Log("-- CreateArcMenu");
     }
 
     public void hideMenu()
     {
-        foreach(Transform child in transform)
-        {
-            child.gameObject.SetActive(false);
-        }
+        transform.gameObject.SetActive(false);
+
     }
 
 	// Use this for initialization
