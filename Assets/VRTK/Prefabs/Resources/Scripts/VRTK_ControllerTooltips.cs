@@ -56,6 +56,7 @@ namespace VRTK
         private GameObject[] buttonTooltips;
         private VRTK_ControllerActions controllerActions;
         private bool[] tooltipStates;
+        private bool tipsInitialised = false;
 
         /// <summary>
         /// The ToggleTips method will display the controller tooltips if the state is `true` and will hide the controller tooltips if the state is `false`. An optional `element` can be passed to target a specific controller tooltip to toggle otherwise all tooltips are toggled.
@@ -218,9 +219,11 @@ namespace VRTK
 
         private void Update()
         {
-            if (!TipsInitialised())
+            if (!tipsInitialised)
             {
                 InitialiseTips();
+                tipsInitialised = true;
+
             }
         }
     }

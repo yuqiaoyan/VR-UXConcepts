@@ -15,6 +15,7 @@ public class eraser : MonoBehaviour {
 
     public GameObject writingCollection;
     public GameObject currMenu;
+    public GameObject tooltipsR, tooltipsL;
 
     private simpleSearch currSearch;
 
@@ -63,6 +64,13 @@ public class eraser : MonoBehaviour {
         {
             AppManager.debugText.text = "clear whiteboard";
             clearWriting();
+        }
+
+        if (controller.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
+        {
+            tooltipsL.SetActive(false);
+            tooltipsR.SetActive(false);
+            Debug.Log("Hide Tooltip");
         }
 
     }
