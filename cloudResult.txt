@@ -3,48 +3,48 @@
     {
       "textAnnotations": [
         {
-          "locale": "en",
-          "description": "FL\n",
+          "locale": "co",
+          "description": "DI\n",
           "boundingPoly": {
             "vertices": [
               {
-                "x": 175,
-                "y": 125
+                "x": 71,
+                "y": 162
               },
               {
-                "x": 681,
-                "y": 125
+                "x": 559,
+                "y": 162
               },
               {
-                "x": 681,
-                "y": 500
+                "x": 559,
+                "y": 479
               },
               {
-                "x": 175,
-                "y": 500
+                "x": 71,
+                "y": 479
               }
             ]
           }
         },
         {
-          "description": "FL",
+          "description": "DI",
           "boundingPoly": {
             "vertices": [
               {
-                "x": 175,
-                "y": 125
+                "x": 71,
+                "y": 459
               },
               {
-                "x": 681,
-                "y": 125
+                "x": 84,
+                "y": 163
               },
               {
-                "x": 681,
-                "y": 500
+                "x": 559,
+                "y": 184
               },
               {
-                "x": 175,
-                "y": 500
+                "x": 547,
+                "y": 480
               }
             ]
           }

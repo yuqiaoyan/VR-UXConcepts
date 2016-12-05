@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class simpleSearch : MonoBehaviour {
@@ -17,7 +18,7 @@ public class simpleSearch : MonoBehaviour {
     public GameObject catalog;
     public GameObject currMenuObj;
     public TextMesh searchText;
-    public TextMesh resultTitle;
+    public GameObject resultTitleCanvas;
 
     public arcLayout currMenu;
 
@@ -98,7 +99,8 @@ public class simpleSearch : MonoBehaviour {
 
         }
 
-        resultTitle.GetComponent<Renderer>().enabled = true;
+        resultTitleCanvas.SetActive(true);
+        //resultTitle.GetComponent<Renderer>().enabled = true;
         currMenu.hideMenu();
 
     }
@@ -142,7 +144,8 @@ public class simpleSearch : MonoBehaviour {
             currMenu.createArcMenu();
         }
 
-        resultTitle.GetComponent<Renderer>().enabled = false;
+        resultTitleCanvas.SetActive(false);
+        //resultTitle.GetComponent<Renderer>().enabled = false;
     }
 
     void Start () {
